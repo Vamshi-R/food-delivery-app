@@ -1,0 +1,29 @@
+{
+  "name": "food-ordering-app",
+  "version": "1.0.0",
+  "description": "Building food ordering app using react",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vamshi-R/food-delivery-app.git"
+  },
+  "keywords": [],
+  "author": "Vamshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vamshi-R/food-delivery-app/issues"
+  },
+  "homepage": "https://github.com/Vamshi-R/food-delivery-app#readme",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  }
+}

@@ -1,0 +1,4 @@
+# dependencies to be ignored to push to github
+/node_modules
+/dist
+.parcel-cache

@@ -1,0 +1,49 @@
+/**
+ * component composition -> component inside component
+ * All JS functions and variables will be wrapped inside {} (curly braces)
+ * App Planning Goes below
+ * Header
+ *  - Logo
+ *  - Nav Items
+ * Body
+ *  - search
+ *  - Restaurant container
+ *     - Restaurant Card
+ *        -image
+ *        -name of restaurant,  cuisine, star rating,delivery time etc.
+ * cards
+ * Footer
+ *  - Copyright
+ *  - Links
+ *  - Address
+ *  - Contact  
+ */
+
+/**
+ * props : are nothing but normal arguments to a function
+ * passing prop to a component is like passing argument to a function
+ * props are javascript object
+ * practice props destructuring
+ */
+
+ /**
+ * config driven UI - example Swiggy app
+ * UI is driven by config -> config comes from BE
+ * Data is the config
+ * Data and UI changes based on location is config driven UI
+ */
+
+ /**
+ * Inline styles
+ * another example style = {{backgrondColor: red}}
+ * first curly braces suggests there is some javascript code
+ * second curly brace is a javascript object 
+ */
+
+ /**
+ * Difference of syntax 
+ * src = "some string"
+ * src = {some string + to be concated value}
+ * 
+ */
+ 
