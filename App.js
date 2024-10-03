@@ -20,14 +20,24 @@ const Header = () => {
     )
 }
 
+/**
+ * always we are looping something in JSX we need to provide unique key property
+ * example: 
+ *   {
+                resObj.map((restaurant) => (
+                    <RestaurantCards key={restaurant?.id} resData={restaurant} />      
+                ))
+            }
+ *  not using keys is not acceptible <<<<<< index as key (atleast not a best practice) <<<< unique id (best practice)
+ */
 const Body = () => {
     return (
       <div className="body">
         <div className="search">Search</div>
         <div className="res-container">
             {
-                resObj.map(restaurant => (
-                    <RestaurantCards resData={restaurant} />      
+                resObj.map((restaurant) => (
+                    <RestaurantCards key={restaurant?.id} resData={restaurant} />      
                 ))
             }
             {/* <RestaurantCards name="Meghana Foods" cuisine="Biryani, North Indian" rating="3.4 stars" time="38 minutes"/>
@@ -49,18 +59,21 @@ const cardStyle = {
 
 const resObj =  [
         {
+            id:1,
             name: 'Meghana Foods',
             cuisine: ['Biryani','sea foods', 'north indian'],
             rating: '3.8 stars',
             time: '38 minutes'
         },
         {
+            id:2,
             name: 'Kannur Foods',
             cuisine: ['Biryani','sea foods', 'south indian'],
             rating: '4 stars',
             time: '25 minutes'
         },
         {
+            id:3,
             name: 'Andhrawala Foods',
             cuisine: ['Hyderabad Biryani','sea foods', 'south indian'],
             rating: '4.2 stars',

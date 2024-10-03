@@ -46,4 +46,22 @@
  * src = {some string + to be concated value}
  * 
  */
+
+ /**
+ * key property
+ * always we are looping something in JSX we need to provide unique key property
+ * example: 
+ *   {
+                resObj.map((restaurant) => (
+                    <RestaurantCards key={restaurant?.id} resData={restaurant} />      
+                ))
+            }
+ *  why do we need key prop ?
+ * to avoid re-rendering of all the data when a new data is added to same data we need to pass key prop
+ * if we dont keep the keys then it will clear everything and render again because it doesnt know
+   where new data to be added.
+ * Dont assign indexes to keys, why not use index as key in react ? browse and learn about it.
+ * not using keys is not acceptible <<<<<< index as key (atleast not a best practice) 
+                 <<<< unique id (best practice)
+ */
  
