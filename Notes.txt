@@ -64,4 +64,79 @@
  * not using keys is not acceptible <<<<<< index as key (atleast not a best practice) 
                  <<<< unique id (best practice)
  */
+
+ /**
+ * Two types of exports and imports
+ * 1. default - to export single item in one file
+ * 2. named - to export multiple items in single file
+ //named import
+ * import {RES_LOGO} from "../utils/constants" 
+ //named export
+ *export const LOGO_URL = "https://tse3.mm.bing.net/th?id=OIP.DJXkSF9B--LYE8SM7M8yCAHaHa&pid=Api&P=0&h=180";
+ // default export 
+ * export default <name of variable>;
+ // default import
+ * import name of variable from "<path of file>";
+
+ Homework: can we use named export along with default export
+ */
+
+ //keep your component short and mimize the code to 100 to 200 lines
+ // if it exceeds more than 200 lines break it into multiple components
+ // these are best practices
+
+ What is a functional component ? 
+  - It is a normal javascript function
+
+ #React Element 
+   -  is a plain javascript object
+
+
+#React Hooks
+   - Hook -> is a normal JS utility function given to us by react with some superpowers.
+   - useState() -> superpowerful state variables.
+                -> whenever a state variable has changes it re renders the component
+                -> const [state, ssetState] = useState(default value);
+                -> its an destructuring of an array
+                -> const arr = useState(some value)
+                -> const [state, setState] = arr;
+
+                further break down
+                const state = arr[0];
+                const setState = arr[1];
+
+                this is what happening behind the scenes
+   - useEffect() -> 
+
+
+# Reconcialition algorithm -> (React Fiber (After React 16))
+
+-> https://github.com/acdlite/react-fiber-architecture 
+above link to learn in depth about react fiber
+
+- Reconcialition -> is whenever something changes in UI
+- React Fiber -> new way of finding difference and updating DOM
+
+-> For example a container has 7 cards
+-> on click we have filtereed 3 cards based on rating, now container has 3 cards
+-> old virtual DOM has 7 cards
+-> New virtual DOM has 3 cards
+-> on change diff algorithm triggers and if found differnce it updates the DOM
+
+- virtual DOM -> is an representation of actual DOM
+              -> console.log(<Body />) -> React Element -> Retyrns Object 
+              -> It is nothing but normal javascript object
+
+# Diff algorithm
+
+- whenever a state variable is set or something changes in UI
+       -> it triggers Diff algorithm
+       -> it compares the difference between old virtual DOM(JS object) and new virtual DOM (JS object)
+       -> If found difference its updates the DOM else it wont
+
+- Why React is fast because
+     - doing efficient DOM manipulation -> bcoz it has virtual DOM
+     - bcoz it perform diff algorithm on changes
+     - updates the DOM if there is difference
+
  
