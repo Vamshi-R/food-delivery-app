@@ -17,14 +17,16 @@ const cardStyle = {
  * 
  */
 const RestaurantCards = (props) => {
-    console.log(props); //its an JS object
+    // console.log(props,"restaurant card prop"); //its an JS object
     // const {rating, time} = props; // destructuring props
     const {resData} = props;
-    const {name,cuisine,rating,time} = resData;
+    const {info} = resData;
+    const {name,cloudinaryImageId,cuisines,avgRating,sla} = info;
+    const {deliveryTime} = sla;
     return (
         <div className="res-cards" style={cardStyle}>
             <img 
-            src={RES_LOGO}
+            src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
             alt="res-logo"
             style={{width:100 + '%'}}
 
@@ -32,9 +34,9 @@ const RestaurantCards = (props) => {
             {/* <h3>{props.name}</h3>
             <h4>{props.cuisine}</h4> */}
             <h3>{name}</h3>
-            <h4>{cuisine.join(", ")}</h4>
-            <h4>{rating}</h4>
-            <h4>{time}</h4>
+            <h4>{cuisines.join(", ")}</h4>
+            <h4>{avgRating}</h4>
+            <h4>{deliveryTime} minutes</h4>
         </div>
     )
 }

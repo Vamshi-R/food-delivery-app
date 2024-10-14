@@ -105,8 +105,21 @@
                 const state = arr[0];
                 const setState = arr[1];
 
+              // important - for practical refer Header component Logout and Login button changes
+              -> useState re renders the component when state variable is updated > updates the UI 
+              -> local variable (JS variable) does not rerender the component 
+              -> const [state, setState] = useState()
+              -> how can we set value to a constant, once setter function is called entire function(component)
+               is invoked again and its a new variable assigned to constant and can be updated with new value.
+
+               // whenever a state variable update, react triggers a reconciliation process(re renders the component)
+
                 this is what happening behind the scenes
-   - useEffect() -> 
+   - useEffect() -> is a normal JS functions
+                 -> it takes two arguments -> callback function and dependency array
+                 -> its called after the component's render cycle is completed
+                 -> if you want to perform something after component is rendered useEffect is the one to use.
+                 -> first everything inside component is rendered first and then useEffect is called once by default
 
 
 # Reconcialition algorithm -> (React Fiber (After React 16))
@@ -138,5 +151,15 @@ above link to learn in depth about react fiber
      - doing efficient DOM manipulation -> bcoz it has virtual DOM
      - bcoz it perform diff algorithm on changes
      - updates the DOM if there is difference
+
+
+#shimmer UI
+
+-> idea of shimmer UI is you need to show something by default as soon as the page loads
+
+-> load component
+-> render with shimmer UI
+-> make api call, after the data is recieved
+-> render again with help of state variable
 
  
