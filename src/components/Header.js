@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {LOGO_URL} from "../utils/constants" // named import expample
 
 const Header = () => {
     let btnName = "Login";
     //variable and setter function
     const [btnNameReact, setBtnNameReact] = useState("Login");
+
+    useEffect(() => {
+        console.log("useEffect hook called on initial render and every time after btnNameReact state is updated")
+    },[btnNameReact]);
+
     return (
         <div className="header">
             <div className="logo-container">

@@ -25,8 +25,12 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   // useEffect hook is called only after the body component is rendered.
+  // it is called after every render without dependency array
+  // if there is a dependency array its behaviour changes
+  // if there is an empty dependency array => useEffect is only called once on initial render
+  // if dependency array is [listOfRestaurant] => useEffect is called every time [listOfRestaurant] is updated
   useEffect(()=>{
-    console.log("use effect called");
+    console.log("use effect called in body only once due to dependency array");
     getData();
   },[]);
 
@@ -36,7 +40,6 @@ const Body = () => {
     const json = await data.json();
     //optinal chaining
     const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    console.log(restaurants,"restaurants from parent");
     // Important note: component is rerenderd after a state variable is updated
     setListOfRestaurant(restaurants);
     // Copy of restaurants
@@ -49,8 +52,6 @@ const Body = () => {
   //   return <Shimmer />
   // }
 
-  console.log("body is rendered first and then useEffect is called");
-
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
@@ -60,15 +61,10 @@ const Body = () => {
         <button
           className="filter-button"
           onClick={(e) => {
-            console.log("JSX is rendered first and then useEffect is called");
             //filter logic for average rating
             const filteredList = listOfRestaurant.filter((res) => res?.info?.avgRating > 4.5);
             setFilteredRestaurant(filteredList);
             // setListOfRestaurant(filteredList); 
-            console.log(
-                filteredList,
-              "UI not update but res if filtered, how to do it"
-            );
           }}
         >
           Top Rated Restaurants
@@ -81,10 +77,8 @@ const Body = () => {
             //fiter the cards based on search value
             //get the search text
             const filteredList = listOfRestaurant.filter((res) => res?.info?.name.toLowerCase().includes(searchText.toLowerCase()));
-            console.log(filteredList)
             // setListOfRestaurant(filteredList);
             setFilteredRestaurant(filteredList);
-            console.log(searchText);
           }}>Search</button>
         </div>
       </div>

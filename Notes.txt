@@ -119,7 +119,16 @@
                  -> it takes two arguments -> callback function and dependency array
                  -> its called after the component's render cycle is completed
                  -> if you want to perform something after component is rendered useEffect is the one to use.
-                 -> first everything inside component is rendered first and then useEffect is called once by default
+                 -> first everything inside component is rendered first and then useEffect is called  by default
+                 -> useEffect is called on every render of component if no dependency array is there
+                 -> if there is a dependency array its behaviour changes
+                 -> if there is an empty dependency array => useEffect is only called once on initial render
+                 -> if dependency array is [listOfRestaurant] => useEffect is called every time 
+                 [listOfRestaurant] is updated.
+
+    - Do's and Dont's -> never create a state variable outside of a functional component
+                      -> Always define a state variable at the begining of functional component
+                      -> Avoid creating inside if/else/for/functions it will cause inconsistencies in a program
 
 
 # Reconcialition algorithm -> (React Fiber (After React 16))
