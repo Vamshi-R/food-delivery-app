@@ -1,4 +1,5 @@
 /**
+ * React => Single Page Application => Just changing the components 
  * component composition -> component inside component
  * All JS functions and variables will be wrapped inside {} (curly braces)
  * App Planning Goes below
@@ -171,4 +172,32 @@ above link to learn in depth about react fiber
 -> make api call, after the data is recieved
 -> render again with help of state variable
 
+# Routing ^6.27.0
+-> npm i react-router-dom
+-> createBrowserRoute -> to configure Routing
+-> RouterProvider -> to provide configuration to our app
+-> children array for defining child routes
+-> errorElement for loading not found page
+-> useRouteError() hook to log error in that page
+-> Outlet -> to define where to render child routes -> to load children inside our oultlet
+-> Link -> provide by react router dom 
+
+#Link
+-> works exactly same as anchor tag
+-> Link is an wrapper around anchor tag behind the woods
+-> it will not reload the entire page
+-> anchor tag will reload the entire page
+-> <a href="/"></a> -> will reloads the enitre page
+-> <Link to={"/restaurant"+param}>Some Name</Link> -> will just changes/load the component in DOM.
+
+# 2types of routing in web apps
+
+1.client side routing - not using a network call to fetch page/component
+2.server side routing - making an network call to get a component/page
+
+
+# Dynamic routing
+
+ex : path: '/restaurant/:resId' => resId is the dynamic route
+-> useParams() -> to read route params
  

@@ -73,3 +73,8 @@
 .search-container {
     margin: 5px;
 }
+
+.links {
+    color: black;
+    text-decoration: none;
+}

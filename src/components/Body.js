@@ -2,6 +2,7 @@ import RestaurantCards from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import resObj from "../utils/mockData";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 /**
  * always we are looping something in JSX we need to provide unique key property
@@ -13,9 +14,6 @@ import Shimmer from "./Shimmer";
             }
  *  not using keys is not acceptible <<<<<< index as key (atleast not a best practice) <<<< unique id (best practice)
  */
-
-
-
 
 const Body = () => {
   // Local state variable
@@ -40,6 +38,7 @@ const Body = () => {
     const json = await data.json();
     //optinal chaining
     const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    console.log(restaurants,"restaurants");
     // Important note: component is rerenderd after a state variable is updated
     setListOfRestaurant(restaurants);
     // Copy of restaurants
@@ -84,7 +83,9 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCards key={restaurant?.info?.id} resData={restaurant} />
+          <Link className="links" key={restaurant?.info?.id} to={'/restaurant/'+restaurant?.info?.id}>
+            <RestaurantCards key={restaurant?.info?.id} resData={restaurant} />
+          </Link>
         ))}
         {/* <RestaurantCards name="Meghana Foods" cuisine="Biryani, North Indian" rating="3.4 stars" time="38 minutes"/>
                         <RestaurantCards name="Andhra Mess" cuisine="Andhra Style" rating="4 stars" time="32 minutes"/> */}
