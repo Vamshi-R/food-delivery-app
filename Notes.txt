@@ -200,4 +200,69 @@ above link to learn in depth about react fiber
 
 ex : path: '/restaurant/:resId' => resId is the dynamic route
 -> useParams() -> to read route params
+
+
+# class based components
+- isnside parent component -> child component
+-> parent constructor > parent render > child constructor > child render
+
+# class based components life cycles
+  -> constructor
+  -> render()
+  -> componentDidMount() 
+      -> called after component is mounted
+      -> use cases
+          -> used to make api call or write initial logic
+          -> why ?
+              -> to quickly render the component then maken and an api call and render it with data.
+
+  Note: https://namastedev.com/learn/namaste-react/ep-08-lets-get-classy 
+      URL for lifecycle diagram
+
+ # Mounting Lifecycle
+  first contructor and render is called for parent and its children,
+  then only component did mount is called for parent and child components
+     - constructor called
+     - render is called (<HTML Dummy />)
+     - DOM and refs are updated (DOM is rendered with dummy data (initial state value))
+     - At last Component Didmount (API call) is called (Mounting phase is completed where component is
+     rendered quickly with dummy data)
+
+  # Example
+  - parent constructor
+  - parent render
+      -child1 constructor
+      -child1 render
+      -child2 constructor
+      -child2 render
+      -child1 component did mount
+      -child2 component did mount
+  -parent component did mount
  
+
+ # Updating Lifecycle
+
+ -> updating phase starts with setState where state is updated with new value
+ -> once setSate is called > state is updated
+ -> render is called again (API Data or updated state data)
+ -> DOM and refs is updated with new data (<HTML API or updated state value />)
+ -> componentDidUpdate is called
+
+# unMounting Lifecycle
+
+-> componentWillUnmount
+   -> this lifecycle is called when the component is removed form the webpage
+      -> like when we navigate away form that page etc.
+      -> when its no more loaded 
+      -> to clear time intervals
+
+# Research topics
+
+why we write like below ?
+super(props)
+contructor(props)
+async componentDidUpdate() {}
+
+why cant we write ?
+
+useEffect(async () => {}) // react gives an error

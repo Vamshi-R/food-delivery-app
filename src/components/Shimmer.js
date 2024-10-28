@@ -1,4 +1,4 @@
-const shimmer = () => {
+const Shimmer = () => {
     return (
         <div className="shimmer-container">
             <div className="shimmer-cards">
@@ -11,4 +11,4 @@ const shimmer = () => {
     )
 }
 //idea of shimmer UI is you need to show something by default as soon as the page loads
-export default shimmer;
+export default Shimmer;
