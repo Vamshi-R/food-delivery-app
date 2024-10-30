@@ -131,6 +131,18 @@
                       -> Always define a state variable at the begining of functional component
                       -> Avoid creating inside if/else/for/functions it will cause inconsistencies in a program
 
+     useEffect(()=>{
+        let timer = setInterval(() => {
+            console.log("Namste React")
+        },1000)
+
+        //called on unmounting lifecycle
+        return(() => {
+            clearInterval(timer)
+            console.log("use effect return called on unmounting")
+        })
+    },[dependency array -> can provide multiple dependencies -> comma separated]);
+
 
 # Reconcialition algorithm -> (React Fiber (After React 16))
 
