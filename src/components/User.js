@@ -32,11 +32,6 @@ const User = (props) => {
 
     if(user === null) return <Shimmer />
     const {name,company,location,bio} = user;
-    // user === null ? (
-    //     <>
-    //      <Shimmer />
-    //     </>
-    // ) :
     return (
       <div className="user-cards">
         {/* {console.log(`${name} child render`)} */}

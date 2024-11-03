@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import resObj from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 /**
  * always we are looping something in JSX we need to provide unique key property
@@ -22,13 +23,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
-  // useEffect hook is called only after the body component is rendered.
-  // it is called after every render without dependency array
-  // if there is a dependency array its behaviour changes
-  // if there is an empty dependency array => useEffect is only called once on initial render
-  // if dependency array is [listOfRestaurant] => useEffect is called every time [listOfRestaurant] is updated
   useEffect(()=>{
-    console.log("use effect called in body only once due to dependency array");
     getData();
   },[]);
 
@@ -38,7 +33,6 @@ const Body = () => {
     const json = await data.json();
     //optinal chaining
     const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    console.log(restaurants,"restaurants");
     // Important note: component is rerenderd after a state variable is updated
     setListOfRestaurant(restaurants);
     // Copy of restaurants
@@ -50,6 +44,16 @@ const Body = () => {
   // if(listOfRestaurant.length === 0) {
   //   return <Shimmer />
   // }
+
+  const onlineStatus = useOnlineStatus();
+
+  if(onlineStatus === false) return (
+    <>
+      <h1>You are Offline!!,Please check your internet connection;</h1>
+      <p>Message from custom hook</p>
+      <p>Task Build a game to improve developer experience which internet goes offline.</p>
+    </>
+  )
 
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
