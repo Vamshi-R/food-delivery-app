@@ -1,4 +1,4 @@
-import RestaurantCards from "./RestaurantCard";
+import RestaurantCards, { withPromotedRestaurant } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import resObj from "../utils/mockData";
 import Shimmer from "./Shimmer";
@@ -22,22 +22,38 @@ const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  //Higher order component
+  const PromotedRestaurantCard = withPromotedRestaurant(RestaurantCards);
 
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[]);
+  }, []);
 
   const getData = async () => {
     //use Allows cors chrome extension to use api's from other websites
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
     const json = await data.json();
     //optinal chaining
-    const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    let restaurants =
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+    restaurants.forEach((res, index) => {
+      console.log(res);
+      if (index % 2 === 0) {
+        res.info["promoted"] = true;
+      } else {
+        res.info["promoted"] = false;
+      }
+    });
+
+    console.log(restaurants, "with promoted values");
     // Important note: component is rerenderd after a state variable is updated
     setListOfRestaurant(restaurants);
     // Copy of restaurants
     setFilteredRestaurant(restaurants);
-  }
+  };
 
   // showing loader untill the page loads with actuall data
   // conditional renderring
@@ -47,13 +63,19 @@ const Body = () => {
 
   const onlineStatus = useOnlineStatus();
 
-  if(onlineStatus === false) return (
-    <>
-      <h1>You are Offline!!,Please check your internet connection;</h1>
-      <p>Message from custom hook</p>
-      <p>Task Build a game to improve developer experience which internet goes offline.</p>
-    </>
-  )
+  if (onlineStatus === false)
+    return (
+      <>
+        <h1>You are Offline!!,Please check your internet connection;</h1>
+        <p>Message from custom hook</p>
+        <p>
+          Task Build a game to improve developer experience which internet goes
+          offline.
+        </p>
+      </>
+    );
+
+  console.log(listOfRestaurant, "listOfRestaurant");
 
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
@@ -65,30 +87,58 @@ const Body = () => {
           className="filter-button"
           onClick={(e) => {
             //filter logic for average rating
-            const filteredList = listOfRestaurant.filter((res) => res?.info?.avgRating > 4.5);
+            const filteredList = listOfRestaurant.filter(
+              (res) => res?.info?.avgRating > 4.5
+            );
             setFilteredRestaurant(filteredList);
-            // setListOfRestaurant(filteredList); 
+            // setListOfRestaurant(filteredList);
           }}
         >
           Top Rated Restaurants
         </button>
         <div className="search-container">
-          <input type="text" className="search-box" value={searchText} onChange={(e) => {
-            setSearchText(e.target.value)
-          }} />
-          <button onClick={() => {
-            //fiter the cards based on search value
-            //get the search text
-            const filteredList = listOfRestaurant.filter((res) => res?.info?.name.toLowerCase().includes(searchText.toLowerCase()));
-            // setListOfRestaurant(filteredList);
-            setFilteredRestaurant(filteredList);
-          }}>Search</button>
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              //fiter the cards based on search value
+              //get the search text
+              const filteredList = listOfRestaurant.filter((res) =>
+                res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              // setListOfRestaurant(filteredList);
+              setFilteredRestaurant(filteredList);
+            }}
+          >
+            Search
+          </button>
         </div>
       </div>
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <Link className="links" key={restaurant?.info?.id} to={'/restaurant/'+restaurant?.info?.id}>
-            <RestaurantCards key={restaurant?.info?.id} resData={restaurant} />
+          <Link
+            className="links"
+            key={restaurant?.info?.id}
+            to={"/restaurant/" + restaurant?.info?.id}
+          >
+            {restaurant?.info?.promoted ? (
+              <>
+                <PromotedRestaurantCard resData={restaurant} />
+              </>
+            ) : (
+              <>
+                <RestaurantCards
+                  key={restaurant?.info?.id}
+                  resData={restaurant}
+                />
+              </>
+            )}
           </Link>
         ))}
         {/* <RestaurantCards name="Meghana Foods" cuisine="Biryani, North Indian" rating="3.4 stars" time="38 minutes"/>

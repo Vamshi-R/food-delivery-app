@@ -303,6 +303,8 @@ useEffect(async () => {}) // react gives an error
    - wrap the lady load compinent with Suspense => refer more to DOCS
       - <Suspense fallback={fallback component} > </Grocery> </Suspense>
 
+ > Refer App.js for Lazy implementation example
+
 # Custom Hooks
  -creating custom hooks makes your code more readable,modular,reusable
  - created a useRestaurantMenu() custom hook and used in RestauraMenu Component.
@@ -310,3 +312,29 @@ useEffect(async () => {}) // react gives an error
  #Task
  - create a custom hook to check whether user is online or offline
  - build a dino game when user goes offline in Body component
+
+ #Different ways of writing styles
+  > sass and scss
+  > bootstrap
+  > chakra UI
+  > material UI
+  > styled componenets > preferred by big companies
+  > Ant design
+  > Tailwind css
+
+ # Tailwind CSS
+  > refer docs for configuration and installation
+  > install Tailwing css intellisense vs code editor extension for populating classes on typing
+
+ # Higher order component
+     > Higher order component is a function that takes a component and returns a component.
+      > means takeas an component as an argument and enhances that component
+      > returns a new component
+
+     why do we use it ?
+     when do we use it ?
+     what component does it take and what component does it return ?
+
+     > Refer Body and RestaurantCards component for example implementation
+
+# Controlled and Uncontrolled components, Lifting the state up

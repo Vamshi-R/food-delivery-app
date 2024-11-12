@@ -14,12 +14,12 @@ const Header = () => {
     },[btnNameReact]);
 
     return (
-        <div className="header">
+        <div className="header flex justify-between">
             <div className="logo-container">
-                <img className="logo" src={LOGO_URL} />
+                <img className="logo w-56" src={LOGO_URL} />
             </div>
             <div className="nav-items">
-                <ul>
+                <ul className="flex p-4 m-4">
                     {/* <li><a href="/">Home</a></li>
                     <li><a href="/about">About Us</a></li>
                     <li><a href="/contact">Contact Us</a></li> */}

@@ -17,7 +17,7 @@ const cardStyle = {
  * 
  */
 const RestaurantCards = (props) => {
-    // console.log(props,"restaurant card prop"); //its an JS object
+    console.log(props,"restaurant card prop"); //its an JS object
     // const {rating, time} = props; // destructuring props
     const {resData} = props;
     const {info} = resData;
@@ -39,6 +39,33 @@ const RestaurantCards = (props) => {
             <h4>{deliveryTime} minutes</h4>
         </div>
     )
+}
+
+// Higher Order Component
+     // input RestaurantCards >>>>> output >>> new enhanced component > PromotedRestaurant card
+
+export const withPromotedRestaurant = (RestaurantCard) => {
+    //returns a new component
+    //component is nothing but a function
+    return (props) => {
+        console.log({...props},"props from restaurant card")
+        //again a enhanced component will return a piece of JSX
+        return (
+            <div className="Promoted Component">
+                <label className="promoted-label">Promoted</label>
+                {
+                /* <RestaurantCard resData={props}/> */
+                // wrong because it will create resData: {
+                //     resData: {
+                //         content
+                //     }
+                // }
+                // Which is not the structure my RestaurantCards component is expecting
+                }
+                <RestaurantCard {...props} />
+            </div>
+        )
+    }
 }
 
 export default RestaurantCards;

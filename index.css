@@ -1,3 +1,7 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -31,7 +35,6 @@
 
 .res-cards {
     width: 200px;
-    /* height: 365px; */
     padding: 5px;
     margin: 5px;
 }
@@ -90,4 +93,13 @@
     margin: 5px 5px;
     background: #f0f0f0;
     width: 500px;
+}
+
+.promoted-label {
+    position: absolute;
+    padding: 2px;
+    margin: 2px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
 }
