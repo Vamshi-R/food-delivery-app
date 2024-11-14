@@ -40,7 +40,6 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     restaurants.forEach((res, index) => {
-      console.log(res);
       if (index % 2 === 0) {
         res.info["promoted"] = true;
       } else {
@@ -48,7 +47,6 @@ const Body = () => {
       }
     });
 
-    console.log(restaurants, "with promoted values");
     // Important note: component is rerenderd after a state variable is updated
     setListOfRestaurant(restaurants);
     // Copy of restaurants
@@ -75,7 +73,6 @@ const Body = () => {
       </>
     );
 
-  console.log(listOfRestaurant, "listOfRestaurant");
 
   return listOfRestaurant.length === 0 ? (
     <Shimmer />

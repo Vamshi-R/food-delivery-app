@@ -16,8 +16,9 @@ const cardStyle = {
  * src = {some string + to be concated value}
  * 
  */
+
 const RestaurantCards = (props) => {
-    console.log(props,"restaurant card prop"); //its an JS object
+    // console.log(props,"restaurant card prop"); //its an JS object
     // const {rating, time} = props; // destructuring props
     const {resData} = props;
     const {info} = resData;
@@ -48,7 +49,7 @@ export const withPromotedRestaurant = (RestaurantCard) => {
     //returns a new component
     //component is nothing but a function
     return (props) => {
-        console.log({...props},"props from restaurant card")
+        // console.log({...props},"props from restaurant card");
         //again a enhanced component will return a piece of JSX
         return (
             <div className="Promoted Component">

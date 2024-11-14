@@ -10,8 +10,6 @@ const User = (props) => {
 
     useEffect(()=>{
         // do domething when count 1 updated
-        // console.log("User page useEfect -> child component")
-        // console.log(`${name} child component did mount`)
         getUsers();
     },[count1])
 
@@ -28,13 +26,11 @@ const User = (props) => {
         const json = await data.json();
         setUser(json)
     }
-    console.log(user)
 
     if(user === null) return <Shimmer />
     const {name,company,location,bio} = user;
     return (
       <div className="user-cards">
-        {/* {console.log(`${name} child render`)} */}
         <div className="user-profile">
           <h3>This is React web development learning.</h3>
           <p>Name: {name}</p>

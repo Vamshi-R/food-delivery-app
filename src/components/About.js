@@ -6,7 +6,6 @@ const About = () => {
 
     useEffect(()=>{
         let timer = setInterval(() => {
-            console.log("Namste React")
         },1000)
 
         //called on unmounting

@@ -338,3 +338,42 @@ useEffect(async () => {}) // react gives an error
      > Refer Body and RestaurantCards component for example implementation
 
 # Controlled and Uncontrolled components, Lifting the state up
+
+   > how to set state variables of my parent from child on click
+   > controlled component > if child is controlled by parent
+
+   #Lifting State Up
+      > https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example
+      > Reacting to input with state
+      > choosing state structure
+      > sharing state between components >>> lifting state up
+      > preserving and resetting state
+      > extracting state logic into a reducer
+      > passing data deeply with a context
+      > scaling up with reducer and context
+
+   #props drilling > problem
+     > passing the data from parent to its childrend and from children to its children is props drilling.
+     > data is one way flow i.e from parent to its leaf children
+
+  # How to pass data from parent to its leaf child or last child without send 
+     data between its intermediate children ?
+  Answer : React Context. > solution to resolve props drilling
+
+
+      // create a context
+      import {createContext} from 'react';
+       const context = createContext({
+        loggedInUserName: 'Default User'
+       })
+
+       export default context;
+
+    // use a context
+       import {useContext} from 'react';
+       import context from './context';
+
+       const data = useContext(context)
+
+       // or 
+       const {loggedInUserName} = useContext(context)

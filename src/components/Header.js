@@ -10,7 +10,6 @@ const Header = () => {
     const onlineStatus = useOnlineStatus();
 
     useEffect(() => {
-        console.log("useEffect hook called on initial render and every time after btnNameReact state is updated")
     },[btnNameReact]);
 
     return (
@@ -32,9 +31,6 @@ const Header = () => {
                     <button 
                     className="Login" 
                     onClick={() => {
-                        console.log("login button triggered")
-                        // btnName = "Logout"
-
                         //setter function
                         const btn = btnNameReact === 'Login' ? 'Logout' : 'Login';
                         setBtnNameReact(btn)

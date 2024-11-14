@@ -103,3 +103,20 @@
     color: white;
     border-radius: 5px;
 }
+
+.accordion-header {
+    width: 70%;
+    background-color: snow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px auto;
+    padding: 5px;
+}
+
+.accordion-body {
+    width: 70%;
+    background-color: snow;
+    margin: 0px auto;
+    padding: 5px;
+}
