@@ -6,6 +6,8 @@ import useRestaurantMenu from '../utils/useRestaurantMenu';
 import RestaurantCategory from './RestaurantCategory';
 
 const RestaurantMenu = (props) => {
+  const [index,setIndex] = useState(0);
+  const [show,setShow] = useState(false);
     const contentStyle = {
         color: "red",
         textDecoration: "underline",
@@ -22,7 +24,7 @@ const RestaurantMenu = (props) => {
     if(resInfo === null) return <Shimmer />;
     const categories = resInfo
     .filter((caategory,index) => caategory?.card?.card?.['@type'] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory');
-    // console.log(categories,"categories")
+    console.log(categories,"categories")
     // const {name, avgRating, totalRatingsString , costForTwoMessage, cuisines} = resInfo?.cards[2]?.card?.card?.info;
     // const {itemCards} = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
     // const category = [];
@@ -57,15 +59,26 @@ const RestaurantMenu = (props) => {
     //   </div>
     // );
 
+    const handleShow = (bool) => {
+      console.log(bool,"bool")
+      setShow(bool);
+    }
+
     return (
       <div className="Menu">
         {/* categories accordion */}
-        {
-          categories.map((category,index) => <div key={index}><RestaurantCategory data={category?.card?.card} /></div>)
-        }
-
+        {/* controlled component */}
+        {categories.map((category, ind) => (
+          <RestaurantCategory
+            key={category?.card?.card?.title}
+            data={category?.card?.card}
+            showItem={ind === index ? true : false}
+            setIndex={() => setIndex(ind)}
+            handleShow={handleShow}
+          />
+        ))}
       </div>
-    )
+    );
 }
 
 export default RestaurantMenu;

@@ -112,6 +112,7 @@
     align-items: center;
     margin: 5px auto;
     padding: 5px;
+    cursor: pointer;
 }
 
 .accordion-body {

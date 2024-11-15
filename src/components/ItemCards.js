@@ -1,6 +1,13 @@
+import { useContext } from "react";
+import { UserContext } from "../utils/UserContext";
+
 const ItemCards = ({itemCards}) => {
+
+    const data = useContext(UserContext);
+    const {loggedInUser} = data;
     return (
         <div className="item-cards">
+            <div>LoggedInUser : {loggedInUser}</div>
             {
                 itemCards.map((item,index) => (
                     <div key={index}>

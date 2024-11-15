@@ -377,3 +377,7 @@ useEffect(async () => {}) // react gives an error
 
        // or 
        const {loggedInUserName} = useContext(context)
+
+    // provide context
+    const [userInfo, setUserInfo] = useState(null);
+    <UserContext.Provider value={{loggedInUser:userInfo,setUserInfo}}><UserContext.Provider>

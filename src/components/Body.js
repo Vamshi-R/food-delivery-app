@@ -1,9 +1,10 @@
 import RestaurantCards, { withPromotedRestaurant } from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import resObj from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { UserContext } from "../utils/UserContext";
 
 /**
  * always we are looping something in JSX we need to provide unique key property
@@ -73,6 +74,10 @@ const Body = () => {
       </>
     );
 
+    const data = useContext(UserContext);
+    const {loggedInUser, setUserInfo} = data;
+    console.log(data, "from body comp")
+
 
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
@@ -115,6 +120,14 @@ const Body = () => {
           >
             Search
           </button>
+        </div>
+        <div className="user-container">
+          <input
+            type="text"
+            className="userName"
+            value={loggedInUser}
+            onChange={(e) => setUserInfo(e.target.value)}
+          />
         </div>
       </div>
       <div className="res-container">
